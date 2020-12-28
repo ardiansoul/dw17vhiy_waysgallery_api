@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "whetwqdqovfrpd",
-    "password": "ed03aa730a987d00ecee57adb7dd9b827593e344988450666f2fa77b602d3aa8",
-    "database": "d6qhtqgebodftg",
-    "host": "ec2-52-44-139-108.compute-1.amazonaws.com:5432",
-    "dialect": "postgresql"
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "whetwqdqovfrpd",
+    "password": "ed03aa730a987d00ecee57adb7dd9b827593e344988450666f2fa77b602d3aa8",
+    "database": "d6qhtqgebodftg",
+    "host": "ec2-52-44-139-108.compute-1.amazonaws.com:5432",
+    "dialect": "postgresql"
   }
 }
