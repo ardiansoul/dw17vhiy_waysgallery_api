@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const port = 5000;
-const Seed = require("./seeders/index");
+// const Seed = require("./seeders/index");
 
 // const db = require("./models");
 // db.sequelize
