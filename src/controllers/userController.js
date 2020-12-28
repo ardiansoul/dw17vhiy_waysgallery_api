@@ -40,7 +40,7 @@ const getUser = async (req, res) => {
       ],
     });
 
-    res.status(201).json({
+    res.status(200).json({
       status: "Success",
       message: "User successfully loaded",
       data: getUser,
@@ -91,7 +91,7 @@ const getUserById = async (req, res) => {
         },
       ],
     });
-    res.status(201).json({
+    res.status(200).json({
       status: "Success",
       message: "User successfully loaded",
       data: getUser,
@@ -159,7 +159,7 @@ const updateUser = async (req, res) => {
       ],
     });
 
-    res.status(201).json({
+    res.status(200).json({
       status: "Success",
       message: "User successfully updated",
       data: getUserAfterUpdate,

@@ -91,7 +91,7 @@ const getProject = async (req, res) => {
       ],
     });
 
-    res.status(201).json({
+    res.status(200).json({
       status: "Success",
       message: "Project successfully loaded",
       data: { project: getProject },

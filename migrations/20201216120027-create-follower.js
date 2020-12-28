@@ -8,7 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      followedId: {
+        // allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
@@ -17,14 +18,19 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
+
       followerId: {
         type: Sequelize.INTEGER,
+        // allowNull: false,
         references: {
           model: "Users",
           key: "id",
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
+      },
+      value: {
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,

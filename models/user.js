@@ -24,15 +24,13 @@ module.exports = (sequelize, DataTypes) => {
         as: "orderTo",
         foreignKey: "ordertoId",
       });
-      User.belongsToMany(models.User, {
+      User.hasMany(models.Follower, {
         as: "follower",
-        foreignKey: "userId",
-        through: "Follower",
+        foreignKey: "followedId",
       });
-      User.belongsToMany(models.User, {
+      User.hasMany(models.Follower, {
         as: "followed",
         foreignKey: "followerId",
-        through: "Follower",
       });
     }
   }

@@ -130,7 +130,7 @@ const getTransactions = async (req, res) => {
           },
         ],
       });
-      return res.status(201).json({
+      return res.status(200).json({
         status: "Success",
         message: "Transaction successfully loaded",
         data: { transactions: getTransactions },
@@ -178,7 +178,7 @@ const getTransactions = async (req, res) => {
         ],
       });
 
-      return res.status(201).json({
+      return res.status(200).json({
         status: "Success",
         message: "Transaction successfully loaded",
         data: { transactions: getTransactions },
@@ -212,7 +212,7 @@ const updateTransaction = async (req, res) => {
 
     await Transaction.update({ status }, { where: { id } });
 
-    const transactionAfterUpdate = Transaction.findOne({
+    const transactionAfterUpdate = await Transaction.findOne({
       where: { id },
       attributes: {
         exclude: ["orderbyId", "ordertoId", "createdAt", "updatedAt"],
@@ -246,7 +246,7 @@ const updateTransaction = async (req, res) => {
         },
       ],
     });
-    res.status(201).json({
+    res.status(200).json({
       status: "Success",
       message: "Transaction successfully updated",
       data: { transaction: transactionAfterUpdate },

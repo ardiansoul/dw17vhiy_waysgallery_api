@@ -101,7 +101,6 @@ const register = async (req, res, next) => {
       process.env.JWT_SECRET_KEY
     );
 
-    console.log(createData);
     res.status(201).json({
       status: "Success",
       data: {

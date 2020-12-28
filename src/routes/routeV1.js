@@ -33,8 +33,7 @@ router.post(
   parser.array("image"),
   userController.uploadArt
 );
-router.post("/followed", auth, followController.followed);
-router.delete("/unfollowed", auth, followController.unfollowed);
+router.patch("/followed", auth, followController.followed);
 
 router.post("/hired", auth, transactionController.order);
 router.get("/transactions", auth, transactionController.getTransactions);
