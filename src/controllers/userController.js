@@ -1,4 +1,4 @@
-const { User, Post, postPhoto, Art } = require("../../models");
+const { User, Post, postPhoto, Art, Follower } = require("../../models");
 
 const getUser = async (req, res) => {
   try {
@@ -37,6 +37,26 @@ const getUser = async (req, res) => {
             exclude: ["createdById", "createdAt", "updatedAt"],
           },
         },
+        {
+          through: {
+            model: Follower,
+            where: {
+              followedId: userId,
+            },
+            attributes: [],
+          },
+          model: User,
+          as: "followed",
+          attributes: {
+            exclude: [
+              "password",
+              "avatar",
+              "greating",
+              "createdAt",
+              "updatedAt",
+            ],
+          },
+        },
       ],
     });
 
@@ -57,6 +77,7 @@ const getUser = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
+    const userId = req.user.id;
 
     const getUser = await User.findOne({
       where: {
@@ -87,6 +108,26 @@ const getUserById = async (req, res) => {
           as: "arts",
           attributes: {
             exclude: ["createdById", "createdAt", "updatedAt"],
+          },
+        },
+        {
+          through: {
+            model: Follower,
+            where: {
+              followedId: userId,
+            },
+            attributes: [],
+          },
+          model: User,
+          as: "followed",
+          attributes: {
+            exclude: [
+              "password",
+              "avatar",
+              "greating",
+              "createdAt",
+              "updatedAt",
+            ],
           },
         },
       ],

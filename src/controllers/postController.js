@@ -4,16 +4,16 @@ const { Op } = require("sequelize");
 
 const getPosts = async (req, res) => {
   try {
-    const { id } = req.user;
+    const userId = req.user.id;
 
     const { query, type } = req.query;
     if (type === "follow") {
       const getPost = await Post.findAll({
-        // where: req.query.query && {
-        //   title: {
-        //     [Op.like]: "%" + query + "%",
-        //   },
-        // },
+        where: req.query.query && {
+          title: {
+            [Op.like]: "%" + query + "%",
+          },
+        },
         attributes: {
           exclude: ["userId", "createdAt", "updatedAt"],
         },
@@ -32,23 +32,28 @@ const getPosts = async (req, res) => {
             attributes: {
               exclude: ["password", "greating", "createdAt", "updatedAt"],
             },
-            // include: [
-            //   {
-            //     model: Follower,
-            //     as: "followed",
-            //     where: {
-            //       followerId: id,
-            //     },
-            //     // through: [
-            //     //   {
-            //     //     where: {
-            //     //       userId: userId,
-            //     //     },
-            //     //     attributes: [""],
-            //     //   },
-            //     // ],
-            //   },
-            // ],
+            include: [
+              {
+                through: {
+                  model: Follower,
+                  where: {
+                    followedId: userId,
+                  },
+                  attributes: [],
+                },
+                model: User,
+                as: "followed",
+                attributes: {
+                  exclude: [
+                    "password",
+                    "avatar",
+                    "greating",
+                    "createdAt",
+                    "updatedAt",
+                  ],
+                },
+              },
+            ],
           },
         ],
       });
@@ -135,11 +140,33 @@ const getPost = async (req, res) => {
           },
           include: [
             {
-              model: Follower,
-              as: "follower",
-              where: {
-                followedId: userId,
+              through: {
+                model: Follower,
+                where: {
+                  followedId: userId,
+                },
+                attributes: [],
               },
+              model: User,
+              as: "followed",
+              attributes: {
+                exclude: [
+                  "password",
+                  "avatar",
+                  "greating",
+                  "createdAt",
+                  "updatedAt",
+                ],
+              },
+              // include: [
+              //   {
+              //     model: User,
+              //     as: "followed",
+              //     where: {
+              //       followedId: userId,
+              //     },
+              //   },
+              // ],
               // through: { model: Follower },
               // attributes: {
               //   exclude: ["id", "createdAt", "updatedAt"],

@@ -59,7 +59,7 @@ const login = async (req, res, next) => {
     console.error(err);
     res.status(500).json({
       status: "error",
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -112,7 +112,7 @@ const register = async (req, res, next) => {
     console.error(err);
     res.status(500).json({
       status: "error",
-      message: err,
+      message: err.message,
     });
   }
 };
