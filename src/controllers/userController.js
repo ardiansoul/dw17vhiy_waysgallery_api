@@ -37,26 +37,6 @@ const getUser = async (req, res) => {
             exclude: ["createdById", "createdAt", "updatedAt"],
           },
         },
-        {
-          through: {
-            model: Follower,
-            where: {
-              followedId: userId,
-            },
-            attributes: [],
-          },
-          model: User,
-          as: "followed",
-          attributes: {
-            exclude: [
-              "password",
-              "avatar",
-              "greating",
-              "createdAt",
-              "updatedAt",
-            ],
-          },
-        },
       ],
     });
 
