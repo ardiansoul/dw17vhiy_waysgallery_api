@@ -59,7 +59,7 @@ const unfollowed = async (req, res) => {
     }
     const findFollower = await Follower.findOne({
       where: {
-        userId: id,
+        followedId: id,
         followerId,
       },
     });
@@ -72,7 +72,7 @@ const unfollowed = async (req, res) => {
     }
 
     const removeFollower = await Follower.destroy({
-      where: { followerId, userId: id },
+      where: { followerId, followedId: id },
     });
 
     res.status(200).json({
