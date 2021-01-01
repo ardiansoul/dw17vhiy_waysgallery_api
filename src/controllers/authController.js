@@ -117,7 +117,47 @@ const register = async (req, res, next) => {
   }
 };
 
+const checkAuth = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const userExist = await User.findOne({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!userExist) {
+      return res.status(400).send({
+        status: "Error",
+        message: "Invalid Login",
+      });
+    }
+
+    const token = jwt.sign(
+      {
+        id: userExist.id,
+      },
+      process.env.JWT_SECRET_KEY
+    );
+
+    res.status(200).json({
+      status: "Success",
+      data: {
+        email: userExist.email,
+        token,
+      },
+    });
+  } catch (err) {
+    return res.status(500).send({
+      error: {
+        message: "Server Error",
+      },
+    });
+  }
+};
+
 module.exports = {
   login,
   register,
+  checkAuth,
 };

@@ -11,18 +11,11 @@ const parser = require("../middleware/imageUpload");
 
 router.post("/login", authController.login);
 router.post("/register", authController.register);
+router.get("/check-auth", auth, authController.checkAuth);
 
 router.get("/posts", auth, postController.getPosts);
 router.get("/post/:id", auth, postController.getPost);
-router.post(
-  "/post",
-  (req, res, next) => {
-    console.log(req), next();
-  },
-  auth,
-  parser.array("photos"),
-  postController.createPost
-);
+router.post("/post", auth, parser.array("photos"), postController.createPost);
 
 router.get("/user", auth, userController.getUser);
 router.patch("/user", auth, parser.single("avatar"), userController.updateUser);
@@ -48,11 +41,4 @@ router.post(
   projectController.createProject
 );
 router.get("/project/:id", auth, projectController.getProject);
-
-// router.get("/", controller.index);
-// router.get("/", controller.index);
-// router.post("/", controller.store);
-// router.put("/", controller.update);
-// router.delete("/", controller.destroy);
-
 module.exports = router;
