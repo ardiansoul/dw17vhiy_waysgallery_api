@@ -35,7 +35,7 @@ router.post(
 );
 
 router.post("/followed", auth, followController.followed);
-router.post("/unfollowed", auth, followController.unfollowed);
+router.delete("/unfollowed", auth, followController.unfollowed);
 
 router.post("/hired", auth, transactionController.order);
 router.get("/transactions", auth, transactionController.getTransactions);
