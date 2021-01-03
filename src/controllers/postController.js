@@ -207,6 +207,7 @@ const createPost = async (req, res) => {
 
     const { title, description, photos } = req.body;
 
+    console.log(req.body);
     const { error } = postValidation(req.body);
 
     if (error) {
