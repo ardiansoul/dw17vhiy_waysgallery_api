@@ -27,7 +27,15 @@ router.post(
   userController.uploadArt
 );
 
-router.post("/followed", auth, followController.followed);
+router.post(
+  "/followed",
+  auth,
+  (req, res, next) => {
+    console.log(req.body);
+    next();
+  },
+  followController.followed
+);
 router.delete("/unfollowed", auth, followController.unfollowed);
 
 router.post("/hired", auth, transactionController.order);

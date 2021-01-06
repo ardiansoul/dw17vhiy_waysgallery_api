@@ -2,7 +2,7 @@ const { Follower } = require("../../models");
 
 const followed = async (req, res) => {
   try {
-    const { followerId, value } = req.body;
+    const { followerId } = req.body;
     const { id } = req.user;
     console.log(followerId, id);
 

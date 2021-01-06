@@ -1,7 +1,9 @@
-if (!process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "development") {
   require("dotenv").config();
 }
 
+console.log(process.env.NODE_ENV);
+console.log(process.env.JWT_SECRET_KEY);
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");

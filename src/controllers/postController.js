@@ -7,7 +7,9 @@ const getPosts = async (req, res) => {
     const userId = req.user.id;
 
     const { query, type } = req.query;
+
     if (type === "follow") {
+      console.log(type);
       const getPost = await Post.findAll({
         where: req.query.query && {
           title: {
