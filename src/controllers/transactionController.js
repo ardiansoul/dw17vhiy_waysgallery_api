@@ -127,6 +127,15 @@ const getTransactions = async (req, res) => {
             attributes: {
               exclude: ["createdAt", "updatedAt", "transactionId"],
             },
+            include: [
+              {
+                model: projectPhoto,
+                as: "photos",
+                attributes: {
+                  exclude: ["projectId", "createdAt", "updatedAt"],
+                },
+              },
+            ],
           },
         ],
       });
@@ -174,6 +183,15 @@ const getTransactions = async (req, res) => {
             attributes: {
               exclude: ["createdAt", "updatedAt", "transactionId"],
             },
+            include: [
+              {
+                model: projectPhoto,
+                as: "photos",
+                attributes: {
+                  exclude: ["projectId", "createdAt", "updatedAt"],
+                },
+              },
+            ],
           },
         ],
       });
