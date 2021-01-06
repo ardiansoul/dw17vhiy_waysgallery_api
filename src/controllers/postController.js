@@ -16,6 +16,7 @@ const getPosts = async (req, res) => {
             [Op.like]: "%" + query + "%",
           },
         },
+        where: { "$createdBy->followed->Follower.followedId$": userId },
         attributes: {
           exclude: ["userId", "createdAt", "updatedAt"],
         },
@@ -38,9 +39,7 @@ const getPosts = async (req, res) => {
               {
                 through: {
                   model: Follower,
-                  where: {
-                    followedId: userId,
-                  },
+
                   attributes: [],
                 },
                 model: User,
