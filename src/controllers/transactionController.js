@@ -1,4 +1,4 @@
-const { Transaction, User, Project } = require("../../models");
+const { Transaction, User, Project, projectPhoto } = require("../../models");
 const { hiredValidation } = require("../middleware/validationForm");
 
 const order = async (req, res) => {
